@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
-import { SearchForm } from './forms';
+import { SearchForm, EntryForm } from './forms';
 
 ReactDOM.render((
     <BrowserRouter>
         <Switch>
+            <Route exact path="/" component={ EntryForm } />
             <Route path="/search" component={ SearchForm } />
         </Switch>
     </BrowserRouter>

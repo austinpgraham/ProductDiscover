@@ -7,10 +7,17 @@ class SearchForm extends Component {
         return (
             <div>
                 <NavBar />
-                <h1>Search form!</h1>
-                <TextInput />
+                <div style={ styles.pageStyle }>
+                    <TextInput />
+                </div>
             </div>
         )
+    }
+}
+
+const styles = {
+    pageStyle: {
+        marginTop: '90px',
     }
 }
 

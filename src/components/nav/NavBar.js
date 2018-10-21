@@ -36,7 +36,8 @@ const styles = {
     },
     labelStyle: {
         paddingLeft: '50px',
-        fontFamily: 'Walkway'
+        fontFamily: 'Walkway',
+        cursor: 'pointer',
     }
 }
 
