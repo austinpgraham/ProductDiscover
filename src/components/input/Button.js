@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 
 class Button extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return(
             <div style={ styles.buttonStyle } onClick={ this.props.onClick } >
@@ -25,6 +21,9 @@ const styles = {
         width: '150px',
         fontWeight: 'bold',
         cursor: 'pointer',
+        borderRadius: 4,
+        marginLeft: '10px',
+        marginRight: '10px'
     }
 }
 
