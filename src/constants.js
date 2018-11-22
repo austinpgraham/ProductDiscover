@@ -1,3 +1,3 @@
-const ROOT = "server.graphshopapp.com";
+const ROOT = "http://localhost:5052";
 
 export { ROOT };
