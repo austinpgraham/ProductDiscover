@@ -11,7 +11,7 @@ function _get_image_path(path) {
     if(path != null) {
         return path;
     }
-    return "http://canacopegdl.com/images/unavailable/unavailable-8.jpg";
+    return "http://chittagongit.com//images/unavailable-icon/unavailable-icon-27.jpg";
 }
 
 class Product extends Component {

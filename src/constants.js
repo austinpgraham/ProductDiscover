@@ -1,3 +1,4 @@
-const ROOT = "http://localhost:5052";
+const ROOT = "http://server.graphshopapp.com";
+const USERID = "A21NVBFIEQWDSG";
 
-export { ROOT };
+export { ROOT, USERID };
