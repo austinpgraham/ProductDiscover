@@ -2,17 +2,9 @@ import React, { Component } from 'react';
 import { NavBar } from '../components/nav';
 import { Title, Text } from '../components/display';
 import { Button } from '../components/input';
+import { Link } from 'react-router-dom';
 
 class EntryForm extends Component {
-    constructor(props) {
-        super(props);
-
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    handleClick(event) {
-        window.location.assign('/search');
-    }
 
     render() {
         return(
@@ -26,7 +18,9 @@ class EntryForm extends Component {
                         Techniques employed include Singular Value Decomposition, Naive Bayes classification, and text clustering.
                         Enjoy!
                     </Text>
-                    <Button onClick={ this.handleClick }>Let's Get Started!</Button>
+                    <Link to="/search" style={{ textDecoration: 'none' }}>
+                        <Button>Let's Get Started!</Button>
+                    </Link>
                 </div>
             </div>
         )
