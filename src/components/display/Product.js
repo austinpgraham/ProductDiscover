@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { UNAVAILABLE } from '../../constants';
 
 function _shortenText(text, limit) {
     if(text.length < limit) {
@@ -11,7 +12,7 @@ function _get_image_path(path) {
     if(path != null) {
         return path;
     }
-    return "http://chittagongit.com//images/unavailable-icon/unavailable-icon-27.jpg";
+    return UNAVAILABLE;
 }
 
 class Product extends Component {

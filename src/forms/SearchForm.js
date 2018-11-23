@@ -41,7 +41,7 @@ class SearchForm extends Component {
         if(this.state.isLoading) {
             return <ReactLoading height={"50px"} width={"50px"}/>
         }
-        return ""
+        return "";
     }
 
     doSearch() {
