@@ -30,6 +30,7 @@ class ProductList extends Component {
     }
 
     renderContent() {
+        debugger;
         if(this.state.isLoading) {
             return (
                 <div style={ styles.contentStyle }>
@@ -40,7 +41,6 @@ class ProductList extends Component {
         
         var components = []
         for(var i = 0; i < this.state.products; i++) {
-            debugger;
             var newProduct = <Product>{this.state.products[i]}</Product>
             components.push(newProduct);
         }
