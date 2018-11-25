@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { NavBar } from '../components/nav';
 import axios from 'axios';
-import { ROOT, UNAVAILABLE } from '../constants';
+import { ROOT, UNAVAILABLE, USERID } from '../constants';
 import ReactLoading from 'react-loading';
-import { Text } from '../components/display';
+import { Text, ProductList } from '../components/display';
 
 function _get_image_path(path) {
     if(path != null) {
@@ -24,7 +24,7 @@ class ProductForm extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {isLoading: true};
+        this.state = {isLoading: true, asins: []};
     }
 
     componentDidMount() {
@@ -42,6 +42,19 @@ class ProductForm extends Component {
                 categories: data.categories
             });
         }).catch(error => this.setState({error: true, isLoading: false}));
+
+        URL = ROOT + "/reviews/recommendations/" + USERID;
+        axios.get(URL).then(response => {
+            var asins = response.data.map(a => a.asin);
+            this.setState({asins: asins});
+        });
+    }
+
+    renderList() {
+        if(this.state.asins.length >= 5) {
+            return <ProductList asins={this.state.asins}>You May Also Like:</ProductList>
+        }
+        return null;
     }
 
     renderContent() {
@@ -60,14 +73,17 @@ class ProductForm extends Component {
             );
         }
         return (
-            <div style={ styles.contentStyle }>
-                <img src={_get_image_path(this.state.imgSrc)} alt="Not available" style={ styles.img }></img>
-                <div style={ styles.subContentStyle }>
-                    <Text>{ this.state.title }</Text>
-                    <p>Price: {_get_price_string(this.state.price)}</p>
-                    <p>Brand: {(this.state.brand == null) ? "Unknown" : this.state.brand}</p>
-                    <p>Categories: {(this.state.categories == null) ? "Unknown" : this.state.categories.join()}</p>
+            <div style={ styles.overall }>
+                <div style={ styles.contentStyle }>
+                    <img src={_get_image_path(this.state.imgSrc)} alt="Not available" style={ styles.img }></img>
+                    <div style={ styles.subContentStyle }>
+                        <Text>{ this.state.title }</Text>
+                        <p>Price: {_get_price_string(this.state.price)}</p>
+                        <p>Brand: {(this.state.brand == null) ? "Unknown" : this.state.brand}</p>
+                        <p>Categories: {(this.state.categories == null) ? "Unknown" : this.state.categories.join()}</p>
+                    </div>
                 </div>
+                {this.renderList()}
             </div>
         );
     }
@@ -94,9 +110,6 @@ const styles = {
     },
     contentStyle: {
         display: 'flex',
-        marginTop: '90px',
-        marginLeft: '200px',
-        marginRight: '200px',
         alignItems: 'center',
     },
     img: {
@@ -107,6 +120,13 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         marginLeft: '20px',
+    },
+    overall: {
+        display: 'flex',
+        flexDirection: 'column',
+        marginTop: '90px',
+        marginLeft: '200px',
+        marginRight: '200px',
     }
 }
 
