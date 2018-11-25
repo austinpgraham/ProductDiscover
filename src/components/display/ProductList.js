@@ -4,6 +4,7 @@ import Product from './Product';
 import ReactLoading from 'react-loading';
 import axios from 'axios';
 import { ROOT } from '../../constants';
+import { Link } from 'react-router-dom';
 
 class ProductList extends Component {
 
@@ -30,7 +31,6 @@ class ProductList extends Component {
     }
 
     renderContent() {
-        debugger;
         if(this.state.isLoading) {
             return (
                 <div style={ styles.contentStyle }>
@@ -40,8 +40,8 @@ class ProductList extends Component {
         }
         
         var components = []
-        for(var i = 0; i < this.state.products; i++) {
-            var newProduct = <Product>{this.state.products[i]}</Product>
+        for(var i = 0; i < this.state.products.length; i++) {
+            var newProduct = <Link to={"/products/"+this.state.products[i].asin}><Product>{this.state.products[i]}</Product></Link>
             components.push(newProduct);
         }
         return (components);
@@ -65,11 +65,6 @@ const styles = {
     products: {
         display: 'flex',
         flexDirection: 'row',
-        border: 'solid',
-        borderRadius: 4,
-        borderStyle: 'line',
-        borderWidth: '2px',
-        width: '100%',
     }
 }
 

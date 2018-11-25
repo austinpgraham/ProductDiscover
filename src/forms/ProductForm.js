@@ -52,7 +52,7 @@ class ProductForm extends Component {
 
     renderList() {
         if(this.state.asins.length >= 5) {
-            return <ProductList asins={this.state.asins}>You May Also Like:</ProductList>
+            return 
         }
         return null;
     }
@@ -83,7 +83,7 @@ class ProductForm extends Component {
                         <p>Categories: {(this.state.categories == null) ? "Unknown" : this.state.categories.join()}</p>
                     </div>
                 </div>
-                {this.renderList()}
+                <ProductList asins={this.state.asins}>You May Also Like:</ProductList>
             </div>
         );
     }
