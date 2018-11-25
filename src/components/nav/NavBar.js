@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './NavBar.css';
 
 class NavBar extends Component {
-    constructor(props) {
-        super(props);
-
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    handleClick(event) {
-        window.location.assign('/');
-    }
 
     render() {
         return(
             <div style={ styles.barStyle }>
                 <div style={ styles.labelStyle }>
-                    <h1 onClick={this.handleClick}>ProductDiscover</h1>
+                    <Link to="/" style={{ textDecoration: 'none' }}>
+                        <h1>ProductDiscover</h1>
+                    </Link>
                 </div>
             </div>
         )

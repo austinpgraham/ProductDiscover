@@ -5,6 +5,7 @@ import axios from 'axios';
 import { ROOT } from '../constants';
 import { Product } from '../components/display';
 import ReactLoading from 'react-loading';
+import { Link } from 'react-router-dom';
 
 class SearchForm extends Component {
     constructor(props) {
@@ -24,7 +25,7 @@ class SearchForm extends Component {
         if (data != null) {
             var products = []
             for(var i = 0; i < data.length; i++) {
-                var new_product = <Product key={data[i].asin}>{data[i]}</Product>;
+                var new_product = <Link to={"/products/"+data[i].asin} key={data[i].asin} style={{ textDecoration: 'none' }}><Product>{data[i]}</Product></Link>;
                 products.push(new_product);
             }
             return (
@@ -40,7 +41,7 @@ class SearchForm extends Component {
         if(this.state.isLoading) {
             return <ReactLoading height={"50px"} width={"50px"}/>
         }
-        return ""
+        return "";
     }
 
     doSearch() {
