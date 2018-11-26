@@ -3,7 +3,7 @@ import { NavBar } from '../components/nav';
 import axios from 'axios';
 import { ROOT, UNAVAILABLE, USERID } from '../constants';
 import ReactLoading from 'react-loading';
-import { Text, ProductList } from '../components/display';
+import { Text, ProductList, ReviewVis } from '../components/display';
 
 function _get_image_path(path) {
     if(path != null) {
@@ -39,7 +39,8 @@ class ProductForm extends Component {
                 title: data.title,
                 price: data.price,
                 brand: data.brand,
-                categories: data.categories
+                categories: data.categories,
+                asin: asin
             });
         }).catch(error => this.setState({error: true, isLoading: false}));
 
@@ -83,6 +84,7 @@ class ProductForm extends Component {
                         <p>Categories: {(this.state.categories == null) ? "Unknown" : this.state.categories.join()}</p>
                     </div>
                 </div>
+                <ReviewVis asin={ this.state.asin } height={300} width={500}></ReviewVis>
                 <ProductList asins={this.state.asins}>You May Also Like:</ProductList>
             </div>
         );

@@ -21,11 +21,7 @@ class ProductList extends Component {
             axios.get(URL).then(response => {
                 var products = this.state.products;
                 products.push(response.data.pop());
-                console.log(products);
-                this.setState({products: products});
-                if(this.state.products.length >= 5) {
-                    this.setState({isLoading: false});
-                }
+                this.setState({products: products, isLoading: false});
             });
         }
     }
