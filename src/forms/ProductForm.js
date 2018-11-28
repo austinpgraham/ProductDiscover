@@ -28,6 +28,7 @@ class ProductForm extends Component {
     }
 
     componentDidMount() {
+        this.setState({isLoading: true});
         var asin = this.props.match.params.asin
         var URL = ROOT + "/products/" + asin;
         axios.get(URL).then(response => {
@@ -53,7 +54,7 @@ class ProductForm extends Component {
 
     renderList() {
         if(this.state.asins.length >= 5) {
-            return 
+            return <ProductList asins={this.state.asins}>You May Also Like:</ProductList>
         }
         return null;
     }
@@ -61,15 +62,19 @@ class ProductForm extends Component {
     renderContent() {
         if(this.state.isLoading) {
             return (
-                <div style={ styles.contentStyle }>
-                    <ReactLoading height={"50px"} width={"50px"}/>
+                <div style={ styles.overall }>
+                    <div style={ styles.contentStyle }>
+                        <ReactLoading height={"50px"} width={"50px"}/>
+                    </div>
                 </div>
             );
         }
         else if (this.state.error) {
             return (
-                <div style={ styles.contentStyle }>
-                    <p>Product not found!</p>
+                <div style={ styles.overall }>
+                    <div style={ styles.contentStyle }>
+                        <p>Product not found!</p>
+                    </div>
                 </div>
             );
         }
@@ -84,8 +89,8 @@ class ProductForm extends Component {
                         <p>Categories: {(this.state.categories == null) ? "Unknown" : this.state.categories.join()}</p>
                     </div>
                 </div>
-                <ReviewVis asin={ this.state.asin } height={300} width={500}></ReviewVis>
-                <ProductList asins={this.state.asins}>You May Also Like:</ProductList>
+                <ReviewVis asin={ this.state.asin } height={500} width={500}></ReviewVis>
+                {this.renderList()}
             </div>
         );
     }

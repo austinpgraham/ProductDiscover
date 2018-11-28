@@ -30,10 +30,10 @@ class ReviewVis extends Component {
         var reviews = this.state.reviews;
         var limit = (reviews.length > 100) ? 100 : reviews.length;
         for(var i = 0; i < limit; i++) {
-            var node_fill = (reviews[i].cluster === 0) ? "green" : "red";
+            var node_fill = (reviews[i].cluster === "good") ? "green" : "red";
             var new_node = <ForceGraphNode node={{ id: reviews[i].reviewerID, radius: 7 }} fill={node_fill} />
             contents.push(new_node);
-            var link_target = (reviews[i].cluster === 0) ? "good" : "bad";
+            var link_target = reviews[i].cluster;
             var new_link = <ForceGraphLink link={{ source: reviews[i].reviewerID, target: link_target }} />
             contents.push(new_link);
         }

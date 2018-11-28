@@ -37,10 +37,10 @@ class ProductList extends Component {
         
         var components = []
         for(var i = 0; i < this.state.products.length; i++) {
-            var newProduct = <Link to={"/products/"+this.state.products[i].asin}><Product>{this.state.products[i]}</Product></Link>
+            var newProduct = <Link onClick={this.forceUpdate} to={"/products/"+this.state.products[i].asin} key={this.state.products[i].asin}><Product>{this.state.products[i]}</Product></Link>;
             components.push(newProduct);
         }
-        return (components);
+        return components;
     }
 
     render() {
