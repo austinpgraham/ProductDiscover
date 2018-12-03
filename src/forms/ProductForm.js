@@ -6,6 +6,10 @@ import ReactLoading from 'react-loading';
 import { Text, ProductList, ReviewVis } from '../components/display';
 
 function _get_image_path(path) {
+    /**
+     * Return the path to the relevant image
+     * or the path to the unavailable image.
+     */
     if(path != null) {
         return path;
     }
@@ -13,6 +17,10 @@ function _get_image_path(path) {
 }
 
 function _get_price_string(price) {
+    /**
+     * Render the price as a string. Show
+     * unknown if the price is not listed.
+     */
     if(price == null) {
         return "Unknown";
     }
@@ -22,15 +30,23 @@ function _get_price_string(price) {
 class ProductForm extends Component {
 
     constructor(props) {
+        /**
+         * Construct component and initialize state.
+         */
         super(props);
 
         this.state = {isLoading: true, asins: []};
     }
 
     componentDidMount() {
+        /**
+         * When the component is mounted to
+         * the screen, show loading state
+         */
         this.setState({isLoading: true});
         var asin = this.props.match.params.asin
         var URL = ROOT + "/products/" + asin;
+        // Request from the server the particular product
         axios.get(URL).then(response => {
             var data = response.data.pop();
             this.setState({
@@ -45,6 +61,7 @@ class ProductForm extends Component {
             });
         }).catch(error => this.setState({error: true, isLoading: false}));
 
+        // Get the list of recommendations for the static user ID.
         URL = ROOT + "/reviews/recommendations/" + USERID;
         axios.get(URL).then(response => {
             var asins = response.data.map(a => a.asin);
@@ -53,6 +70,10 @@ class ProductForm extends Component {
     }
 
     renderList() {
+        /**
+         * Render the product list if enough products
+         * have been loaded.
+         */
         if(this.state.asins.length >= 5) {
             return <ProductList asins={this.state.asins}>You May Also Like:</ProductList>
         }
@@ -60,6 +81,9 @@ class ProductForm extends Component {
     }
 
     renderContent() {
+        /**
+         * Show loading/error based on state.
+         */
         if(this.state.isLoading) {
             return (
                 <div style={ styles.overall }>
@@ -78,6 +102,8 @@ class ProductForm extends Component {
                 </div>
             );
         }
+        // If everything is properly loaded, 
+        // show the product information.
         return (
             <div style={ styles.overall }>
                 <div style={ styles.contentStyle }>

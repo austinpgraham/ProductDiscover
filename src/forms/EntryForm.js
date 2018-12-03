@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 class EntryForm extends Component {
 
     render() {
+        // Render the intro page w/ text
         return(
             <div style={ styles.pageStyle }>
                 <NavBar />

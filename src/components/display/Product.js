@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { UNAVAILABLE } from '../../constants';
 
 function _shortenText(text, limit) {
+    /**
+     * Shorten the text of a title based on
+     * the given limit. Return the original if 
+     * too short.
+     */
     if(text.length < limit) {
         return text;
     }
@@ -9,6 +14,10 @@ function _shortenText(text, limit) {
 }
 
 function _get_image_path(path) {
+    /**
+     * Return the path to the relevant image
+     * or the path to the unavailable image.
+     */
     if(path != null) {
         return path;
     }

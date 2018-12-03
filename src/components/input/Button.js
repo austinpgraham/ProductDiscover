@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class Button extends Component {
     render() {
+        // Render a selectable entity and link to a click function.
         return(
             <div style={ styles.buttonStyle } onClick={ this.props.onClick } >
                 { this.props.children }

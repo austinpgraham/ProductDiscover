@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class TextInput extends Component {
     render() {
+        // Render an input box
         return(
             <input 
                 style={ styles.inputStyle } 

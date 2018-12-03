@@ -5,6 +5,7 @@ import './NavBar.css';
 class NavBar extends Component {
 
     render() {
+        // Render a nav bar that links to the home page.
         return(
             <div style={ styles.barStyle }>
                 <div style={ styles.labelStyle }>

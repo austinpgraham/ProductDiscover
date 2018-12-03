@@ -9,19 +9,27 @@ import { Link } from 'react-router-dom';
 
 class SearchForm extends Component {
     constructor(props) {
+        /**
+         * Construct the component and initialize state.
+         */
         super(props);
         this.state = {searchTerm: "", isLoading: false, products: null}
 
+        // Link instance functions
         this.doSearch = this.doSearch.bind(this);
         this.handleTermChange = this.handleTermChange.bind(this);
         this.renderProducts = this.renderProducts.bind(this);
     }
 
     handleTermChange(e) {
+        // Re-init search term on key change
         this.setState({searchTerm: e.target.value});
     }
 
     renderProducts(data) {
+        /**
+         * Render loaded products on query success.
+         */
         if (data != null) {
             var products = []
             for(var i = 0; i < data.length; i++) {
@@ -38,6 +46,9 @@ class SearchForm extends Component {
     }
 
     showLoading() {
+        /**
+         * Show loading state
+         */
         if(this.state.isLoading) {
             return <ReactLoading height={"50px"} width={"50px"}/>
         }
@@ -45,6 +56,9 @@ class SearchForm extends Component {
     }
 
     doSearch() {
+        /**
+         * Query the server for products with the search term.
+         */
         this.setState({isLoading: true});
         const URL = ROOT + "/products/search/" + this.state.searchTerm;
         if(this.state.searchTerm !== "") {

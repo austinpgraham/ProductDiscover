@@ -9,12 +9,21 @@ import { Link } from 'react-router-dom';
 class ProductList extends Component {
 
     constructor(props) {
+        /**
+         * Contruct the component and 
+         * initialize the state.
+         */
         super(props);
 
         this.state = {isLoading: true, products: []};
     }
 
     componentDidMount() {
+        /**
+         * When the component is loaded to the page, 
+         * query the server for each product, and add
+         * the resulting data to the state.
+         */
         var asinList = this.props.asins;
         for(var i = 0; i < asinList.length; i++) {
             var URL = ROOT + "/products/" + asinList[i];
@@ -27,6 +36,10 @@ class ProductList extends Component {
     }
 
     renderContent() {
+        /**
+         * Render the loading image while being queried,
+         * otherwise load links to the other products
+         */
         if(this.state.isLoading) {
             return (
                 <div style={ styles.contentStyle }>
@@ -35,6 +48,7 @@ class ProductList extends Component {
             );
         }
         
+        // Load the stated data into sets of components.
         var components = []
         for(var i = 0; i < this.state.products.length; i++) {
             var newProduct = <Link onClick={this.forceUpdate} to={"/products/"+this.state.products[i].asin} key={this.state.products[i].asin}><Product>{this.state.products[i]}</Product></Link>;
